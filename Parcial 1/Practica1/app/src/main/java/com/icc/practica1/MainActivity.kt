@@ -1,47 +1,23 @@
 package com.icc.practica1
 
 import android.os.Bundle
+import android.util.Log
+import android.widget.Button
+import android.widget.EditText
 import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import com.icc.practica1.ui.theme.Practica1Theme
 
 class MainActivity : ComponentActivity() {
+    private val TAG = "Practica1"
+    //private lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContent {
-            Practica1Theme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
-            }
-        }
-    }
-}
+        setContentView(R.layout.activity_main)
 
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
+        //Mensaje de arranque en consola
+        Log.i("Ejemplo", "la app inicio")
 
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    Practica1Theme {
-        Greeting("Android")
+        val etNombre = findViewById<EditText>(R.id.etNombre)
+        val btnToast = findViewById<Button>(R.id.btnToast)
+
     }
 }
