@@ -14,69 +14,82 @@
             android:orientation="vertical" >
 
             <TextView
-                android:id="@+id/textView2"
-                android:layout_width="match_parent"
+                android:id="@+id/tvTitulo"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="TextView" />
+                android:text="Preferencias de usuario"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:paddingBottom="12dp"/>
 
             <TextView
-                android:id="@+id/textView"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="TextView" />
+                android:text="Nivel de experencia: " />
 
             <RadioGroup
+                android:id="@+id/rgNivel"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" >
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
                 <RadioButton
-                    android:id="@+id/radioButton"
-                    android:layout_width="match_parent"
+                    android:id="@+id/rbBasico"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="RadioButton" />
+                    android:text="Básico" />
 
                 <RadioButton
-                    android:id="@+id/radioButton2"
-                    android:layout_width="match_parent"
+                    android:id="@+id/rbIntermedio"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="RadioButton" />
+                    android:text="Intermedio" />
 
                 <RadioButton
-                    android:id="@+id/radioButton3"
-                    android:layout_width="match_parent"
+                    android:id="@+id/rbAvanzado"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="RadioButton" />
+                    android:text="Avanzado" />
+
             </RadioGroup>
 
             <TextView
-                android:id="@+id/textView3"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="TextView" />
+                android:text="Tecnologías de interés:"
+                android:paddingTop="12dp"/>
 
             <CheckBox
-                android:id="@+id/checkBox"
-                android:layout_width="match_parent"
+                android:id="@+id/cbKotlin"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="CheckBox" />
+                android:text="Kotlin" />
 
             <CheckBox
-                android:id="@+id/checkBox2"
-                android:layout_width="match_parent"
+                android:id="@+id/cbJetpack"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="CheckBox" />
+                android:text="Jetpack" />
+
+            <CheckBox
+                android:id="@+id/cbFirebase"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Firebase" />
 
             <Button
-                android:id="@+id/button"
+                android:id="@+id/btnVerSeleccion"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Button" />
+                android:text="Ver selección"
+                android:layout_marginTop="12dp"/>
 
             <TextView
-                android:id="@+id/textView4"
+                android:id="@+id/tvResultado"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="TextView" />
+                android:text="Resultado aparece aqui"
+                android:paddingTop="12dp"/>
 
         </LinearLayout>
     </ScrollView>
