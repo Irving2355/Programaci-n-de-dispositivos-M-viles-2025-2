@@ -1,6 +1,7 @@
 package com.icc.practica2
 
 import android.os.Bundle
+import android.os.PersistableBundle
 import android.util.Log
 import android.widget.Button
 import android.widget.CheckBox
@@ -80,5 +81,24 @@ class MainActivity : AppCompatActivity() {
             tvResultado.text = texto
             Toast.makeText(this,"Leido",Toast.LENGTH_SHORT).show()
         }
+
+        //Restauracion
+        savedInstanceState?.let{
+            state->
+            rgNivel.check(state.getInt("nivelCheckedId", -1))
+            cbKotlin.isChecked = state.getBoolean("cbKotlin",false)
+            cbJetpack.isChecked = state.getBoolean("cbJetpack",false)
+            cbFirebase.isChecked = state.getBoolean("cbFirebase",false)
+            tvResultado.text = state.getString("resultado","Resultado aparecera aqui")
+        }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putInt("nivelCkeckedId", rgNivel.checkedRadioButtonId)
+        outState.getBoolean("cbKotlin", cbKotlin.isChecked)
+        outState.getBoolean("cbJetpack", cbJetpack.isChecked)
+        outState.getBoolean("cbFirebase", cbFirebase.isChecked)
+        outState.getString("resultado",tvResultado.text.toString())
     }
 }
