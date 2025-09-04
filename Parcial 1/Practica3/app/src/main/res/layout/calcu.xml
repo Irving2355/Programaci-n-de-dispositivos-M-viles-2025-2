@@ -39,15 +39,15 @@
             app:layout_columnWeight="1" />
 
         <Button android:id="@+id/btnBack" android:layout_width="0dp"
-            android:layout_height="wrap_content" android:text=""
+            android:layout_height="wrap_content" android:text="back"
             app:layout_columnWeight="1" />
 
         <Button android:id="@+id/btnDiv" android:layout_width="0dp"
-            android:layout_height="wrap_content" android:text=""
+            android:layout_height="wrap_content" android:text="/"
             app:layout_columnWeight="1" />
 
         <Button android:id="@+id/btnMul" android:layout_width="0dp"
-            android:layout_height="wrap_content" android:text=""
+            android:layout_height="wrap_content" android:text="*"
             app:layout_columnWeight="1" />
 
 <!--        Botones de la segunda fila 7 8 9 resta-->
