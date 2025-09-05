@@ -120,5 +120,45 @@ class MainActivity : AppCompatActivity() {
             op = null
             clearOnNextDigit = true
         }
+
+        //Listeners
+        //numeros
+        binding.btn0.setOnClickListener { appendDigit("0") }
+        binding.btn1.setOnClickListener { appendDigit("1") }
+        binding.btn2.setOnClickListener { appendDigit("2") }
+        binding.btn3.setOnClickListener { appendDigit("3") }
+        binding.btn4.setOnClickListener { appendDigit("4") }
+        binding.btn5.setOnClickListener { appendDigit("5") }
+        binding.btn6.setOnClickListener { appendDigit("6") }
+        binding.btn7.setOnClickListener { appendDigit("7") }
+        binding.btn8.setOnClickListener { appendDigit("8") }
+        binding.btn9.setOnClickListener { appendDigit("9") }
+
+        //operadores
+        binding.btnAdd.setOnClickListener { setOperator('+') }
+        binding.btnSub.setOnClickListener { setOperator('-') }
+        binding.btnMul.setOnClickListener { setOperator('*') }
+        binding.btnDiv.setOnClickListener { setOperator('/') }
+
+        //especiales
+        binding.btnEq.setOnClickListener { compute() }
+        binding.btnC.setOnClickListener { clearAll() }
+        binding.btnBack.setOnClickListener { backspace() }
+        binding.btnDot.setOnClickListener { addDot() }
+        binding.btnSign.setOnClickListener { toggleSing() }
+
+        //boton ANS
+        binding.btnAns.setOnClickListener {
+            val ansText = ans.toString()
+            //si venimos de un calculo / error / limpeza, reemplazar
+            if(clearOnNextDigit || displayText() == "0" ||displayText() == "Error"){
+                setDisplay(ansText)
+                clearOnNextDigit = false
+            }else{
+                //si ya hay contenido numerico, concatenar
+                setDisplay(displayText() + ansText)
+            }
+        }
+
     }
 }
