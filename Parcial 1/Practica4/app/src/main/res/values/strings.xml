@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Practica4</string>
+
+    <string-array name="caras_array">
+        <item>Cara 1</item> <item>Cara 2</item>
+        <item>Cara 3</item> <item>Cara 4</item>
+    </string-array>
+
+    <string-array name="cuerpos_array">
+        <item>Cuerpo 1</item> <item>Cuerpo 2</item>
+        <item>Cuerpo 3</item> <item>Cuerpo 4</item>
+    </string-array>
+</resources>
