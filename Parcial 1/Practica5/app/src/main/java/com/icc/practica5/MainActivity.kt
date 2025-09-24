@@ -1,13 +1,17 @@
 package com.icc.practica5
 
+import android.media.browse.MediaBrowser
+import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
+import androidx.media3.common.MediaItem
 import androidx.media3.exoplayer.ExoPlayer
 import com.bumptech.glide.Glide
 import com.icc.practica5.databinding.ActivityMainBinding
+import com.parse.ParseFile
 import com.parse.ParseObject
 import com.parse.ParseQuery
 
@@ -42,7 +46,7 @@ class MainActivity : AppCompatActivity(){
                     "Imagen" -> loadMedia("image")
                     "Audio" -> loadMedia("audio")
                     "Video" -> loadMedia("video")
-                    "Texto" -> loadMedia("texto")
+                    "Texto" -> loadMedia("text")
                 }
             }
 
@@ -60,7 +64,7 @@ class MainActivity : AppCompatActivity(){
     }
 
     private fun loadMedia(type: String){
-        //relasePlayers()
+        relasePlayers()
         setStatus("Buscando '$type' en Back4app")
 
         val query = ParseQuery.getQuery<ParseObject>("Media")
@@ -80,9 +84,9 @@ class MainActivity : AppCompatActivity(){
             val url = file.url
             when(type){
                 "image" -> showImage(url)
-                //"audio" -> playAudio(url)
-                //"video" -> playVideo(url)
-                //"text" -> loadText(file)
+                "audio" -> playAudio(url)
+                "video" -> playVideo(url)
+                "text" -> loadText(file)
             }
         }
     }
@@ -95,5 +99,64 @@ class MainActivity : AppCompatActivity(){
         showOnly(binding.ivImage)
         Glide.with(this).load(url).into(binding.ivImage)
         setStatus("Imagen cargada")
+    }
+
+    private fun playVideo(url: String?){
+        if(url == null){
+            setStatus("URL Vacia.")
+            return
+        }
+        showOnly(binding.playerViewVideo)
+        videoPlayer = ExoPlayer.Builder(this).build().also{ p ->
+            binding.playerViewVideo.player = p
+            p.setMediaItem(MediaItem.fromUri(Uri.parse(url)))
+            p.prepare()
+            p.playWhenReady = true
+        }
+        setStatus("Reproduciendo video")
+    }
+
+    private fun playAudio(url: String?){
+        if(url == null){
+            setStatus("URL Vacia.")
+            return
+        }
+        showOnly(null)
+        audioPlayer = ExoPlayer.Builder(this).build().also { p ->
+            p.setMediaItem(MediaItem.fromUri(Uri.parse(url)))
+            p.prepare()
+            p.playWhenReady = true
+        }
+        setStatus("Reproduciendo audio")
+    }
+
+    private fun relasePlayers(){
+        audioPlayer?.release(); audioPlayer = null
+        videoPlayer?.release(); videoPlayer = null
+        binding.playerViewVideo.player = null
+    }
+
+    private fun loadText(file: ParseFile){
+        setStatus("Descargando texto")
+        file.getDataInBackground { data, e ->
+            if(e != null || data == null){
+                setStatus("Error al cargar")
+                return@getDataInBackground
+            }
+            binding.tvText.text = data.toString(Charsets.UTF_8)
+            showOnly(binding.scrollText)
+            setStatus("Texto cargado")
+        }
+    }
+
+    override fun onStop() {
+        super.onStop()
+        audioPlayer?.playWhenReady = false
+        videoPlayer?.playWhenReady = false
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        relasePlayers()
     }
 }
