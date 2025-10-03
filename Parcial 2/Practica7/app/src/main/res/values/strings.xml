@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Practica7</string>
+
+    <string name="title_total">Total: $%1$.2f</string>
+    <string name="unit_price">Precio unitario: $%1$.2f</string>
+    <string name="qty">Cantidad</string>
 </resources>
