@@ -2,46 +2,36 @@ package com.icc.practica7
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import com.icc.practica7.ui.theme.Practica7Theme
+import androidx.appcompat.app.AppCompatActivity
+import com.icc.practica7.databinding.ActivityMainBinding
 
-class MainActivity : ComponentActivity() {
+class MainActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityMainBinding
+
+    private var unitPrice = 49.90
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContent {
-            Practica7Theme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        binding.tvUnitPrice.text = getString(R.string.unit_price,
+            unitPrice)
+
+        binding.qs.setOnQuantityChangedListener(
+            object  : QuantityStepper.OnQuantityChangedListener{
+                override fun onChanged(qty: Int) {
+                    updateTotal(qty)
                 }
             }
-        }
+        )
+
+        updateTotal(binding.qs.getQuantity())
     }
-}
 
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    Practica7Theme {
-        Greeting("Android")
+    private fun updateTotal(qty: Int){
+        val total = unitPrice * qty
+        binding.tvTotal.text = getString(R.string.title_total,
+            total)
     }
 }

@@ -3,14 +3,16 @@ package com.icc.practica7
 import android.R.attr.orientation
 import android.content.Context
 import android.util.AttributeSet
+import android.widget.LinearLayout
 import android.widget.LinearLayout.HORIZONTAL
+import android.widget.Toast
 import com.icc.practica7.databinding.ViewQuantityStepperBinding
 
 class QuantityStepper @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     deafStyle: Int = 0
-) {
+) : LinearLayout(context,attrs,deafStyle){
     interface OnQuantityChangedListener{fun onChanged(qty: Int)}
 
     private lateinit var binding: ViewQuantityStepperBinding
@@ -65,5 +67,26 @@ class QuantityStepper @JvmOverloads constructor(
         }
     }
 
+    private fun changedBy(delta: Int){
+        setQuantity(qty+delta, fromUser = true)
+    }
 
+    fun setOnQuantityChangedListener(l: OnQuantityChangedListener?){
+        listener = l
+    }
+
+    fun getQuantity(): Int = qty
+
+    fun setQuantity(value: Int, fromUser: Boolean = false){
+        val clamped = value.coerceIn(min,max)
+        val changed = (clamped != qty)
+        qty = clamped
+        binding.etQuantity.setText(qty.toString())
+
+        if(fromUser && value != clamped){
+            Toast.makeText(context, "Limite $min , $max",
+                Toast.LENGTH_SHORT).show()
+        }
+        if(changed) listener?.onChanged(qty)
+    }
 }
