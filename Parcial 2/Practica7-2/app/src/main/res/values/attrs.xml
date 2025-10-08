@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--Declaracion de atributos personalizados-->
+    <declare-styleable name="QuantityStepper">
+        <attr name="qs_min" format="integer"/>
+        <attr name="qs_max" format="integer"/>
+        <attr name="qs_step" format="integer"/>
+        <attr name="qs_initial" format="integer"/>
+    </declare-styleable>
+</resources>
