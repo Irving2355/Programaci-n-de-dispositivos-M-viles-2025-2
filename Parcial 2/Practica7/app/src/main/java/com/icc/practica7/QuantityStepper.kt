@@ -1,10 +1,9 @@
 package com.icc.practica7
 
-import android.R.attr.orientation
 import android.content.Context
 import android.util.AttributeSet
+import android.view.LayoutInflater
 import android.widget.LinearLayout
-import android.widget.LinearLayout.HORIZONTAL
 import android.widget.Toast
 import com.icc.practica7.databinding.ViewQuantityStepperBinding
 
@@ -25,6 +24,11 @@ class QuantityStepper @JvmOverloads constructor(
 
     init{
         orientation = HORIZONTAL
+
+        //falto inflar el layout interno del control
+        binding = ViewQuantityStepperBinding.inflate(
+            LayoutInflater.from(context), this
+        )
 
         if(attrs != null){
             val ta = context.obtainStyledAttributes(attrs,
@@ -68,7 +72,7 @@ class QuantityStepper @JvmOverloads constructor(
     }
 
     private fun changedBy(delta: Int){
-        setQuantity(qty+delta, fromUser = true)
+        setQuantity(qty + delta, fromUser = true)
     }
 
     fun setOnQuantityChangedListener(l: OnQuantityChangedListener?){
