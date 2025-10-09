@@ -4,5 +4,13 @@
     <style name="Theme.Practica7" parent="Theme.AppCompat.DayNight.NoActionBar">
         <item name="android:statusBarColor">?attr/colorPrimary</item>
         <item name="android:navigationBarColor">?attr/colorPrimary</item>
+
+        <item name="quantityStepperStyle">@style/Widget.QuantityStepper</item>
+    </style>
+
+    <style name="Widget.QuantityStepperStyle">
+        <item name="qs_buttonIconMinus">@drawable/ic_remove_24</item>
+        <item name="qs_buttonIconPlus">@drawable/ic_add_24</item>
+        <item name="qs_tint">@color/teal_700</item>
     </style>
 </resources>

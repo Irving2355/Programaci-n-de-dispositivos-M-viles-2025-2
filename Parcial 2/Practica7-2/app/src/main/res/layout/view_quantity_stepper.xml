@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merge xmlns:android="http://schemas.android.com/apk/res/android">
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -7,11 +8,21 @@
         android:orientation="horizontal"
         android:gravity="center_vertical">
 
-        <Button
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnMinus"
+            style="@style/Widget.Material3.Button.TonalButton"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            app:icon="@drawable/ic_remove_24"
+            app:iconGravity="textStart"
+            app:rippleColor="@color/ripple_tint"
+            android:contentDescription="@string/desc_minus"/>
+
+        <!--<Button
             android:id="@+id/btnMinus"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:text="      " />
+            android:text="      " />-->
 
         <EditText
             android:id="@+id/etQuantity"

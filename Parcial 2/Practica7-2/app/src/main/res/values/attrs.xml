@@ -6,5 +6,16 @@
         <attr name="qs_max" format="integer"/>
         <attr name="qs_step" format="integer"/>
         <attr name="qs_initial" format="integer"/>
+
+        <attr name="qs_unitPrice" format="float"/>
+
+        <attr name="qs_buttonIconMinus" format="reference"/>
+        <attr name="qs_buttonIconPlus" format="reference"/>
+        <attr name="qs_tint" format="color|reference"/>
+
+        <!-- comportamiento extra -->
+        <attr name="qs_autoRepeatEnabled" format="boolean"/>
+        <attr name="qs_vibrateOnLimit" format="boolean"/>
     </declare-styleable>
+    <attr name="quantityStepperStyle" format="reference"/>
 </resources>
