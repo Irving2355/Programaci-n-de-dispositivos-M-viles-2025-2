@@ -1,10 +1,13 @@
 package com.icc.practica7
 
 import android.content.Context
+import android.os.Handler
+import android.os.Looper
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.LinearLayout
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import com.icc.practica7.databinding.ViewQuantityStepperBinding
 
 class QuantityStepper @JvmOverloads constructor(
@@ -14,21 +17,58 @@ class QuantityStepper @JvmOverloads constructor(
 ) : LinearLayout(context,attrs,deafStyle){
     interface OnQuantityChangedListener{fun onChanged(qty: Int)}
 
-    private lateinit var binding: ViewQuantityStepperBinding
+    interface OnTotalChangedListener{fun onTotalChanged(total: Double)}
+
+    //private lateinit var binding: ViewQuantityStepperBinding
+    private var binding: ViewQuantityStepperBinding =
+        ViewQuantityStepperBinding.inflate(LayoutInflater.from(
+            context),this)
 
     private var min = 1
     private var max = 99
     private var step = 1
     private var qty = 1
-    private var listener: OnQuantityChangedListener? = null
+    private var unitPrice = 0.0
+
+    private var autoRepeatEnebled = true
+    private var vibrateOnLimit = true
+
+    //private var listener: OnQuantityChangedListener? = null
+
+    //listeners externos
+    private var onQtyChanged: OnQuantityChangedListener? = null
+    private var onTotalChanged: OnTotalChangedListener? = null
+
+    //estetica
+    private var buttonSizePx = 0
+    private var tintColor = 0
+    private var cornerRadius = 0f
+
+    //Handler para auto-repeat
+    private val handler = Handler(Looper.getMainLooper())
+    private var repeating = false
 
     init{
         orientation = HORIZONTAL
 
-        //falto inflar el layout interno del control
-        binding = ViewQuantityStepperBinding.inflate(
-            LayoutInflater.from(context), this
-        )
+        //leer atributios del xml/tema/estilos
+        val a = context.obtainStyledAttributes(attrs,R.styleable.QuantityStepper,
+            deafStyle,0)
+        min = a.getInt(R.styleable.QuantityStepper_qs_min,1)
+        max = a.getInt(R.styleable.QuantityStepper_qs_max,99)
+        step = a.getInt(R.styleable.QuantityStepper_qs_step,1)
+        qty = a.getInt(R.styleable.QuantityStepper_qs_initial,min)
+        unitPrice = a.getFloat(R.styleable.QuantityStepper_qs_unitPrice,
+            0f).toDouble()
+
+        val iconMinus = a.getResourceId(R.styleable.QuantityStepper_qs_buttonIconMinus,
+            R.drawable.ic_remove_24)
+
+        val iconPlus = a.getResourceId(R.styleable.QuantityStepper_qs_buttonIconPlus,
+            R.drawable.ic_add_24)
+
+        tintColor = a.getColor(R.styleable.QuantityStepper_qs_tint,
+            ContextCompat.getColor(context,R.color.teal_700))
 
         if(attrs != null){
             val ta = context.obtainStyledAttributes(attrs,

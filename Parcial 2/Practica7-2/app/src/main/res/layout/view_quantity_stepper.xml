@@ -18,25 +18,26 @@
             app:rippleColor="@color/ripple_tint"
             android:contentDescription="@string/desc_minus"/>
 
-        <!--<Button
-            android:id="@+id/btnMinus"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:text="      " />-->
-
-        <EditText
+        <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etQuantity"
-            android:layout_width="64dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:inputType="number"
             android:text="1"
-            android:gravity="center"
-            android:maxLines="1"/>
+            android:maxLines="1"
+            android:contentDescription="@string/desc_quantity"
+            />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btnPlus"
+            style="@style/Widget.Material3.Button.TonalButton"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:text="+" />
+            app:icon="@drawable/ic_add_24"
+            app:iconGravity="textStart"
+            app:rippleColor="@color/ripple_tint"
+            android:contentDescription="@string/desc_plus"/>
+
     </LinearLayout>
 </merge>

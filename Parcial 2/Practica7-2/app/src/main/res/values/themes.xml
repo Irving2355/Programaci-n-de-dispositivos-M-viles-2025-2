@@ -12,5 +12,9 @@
         <item name="qs_buttonIconMinus">@drawable/ic_remove_24</item>
         <item name="qs_buttonIconPlus">@drawable/ic_add_24</item>
         <item name="qs_tint">@color/teal_700</item>
+        <item name="qs_cornerRadius">16dp</item>
+        <item name="qs_buttonSize">40dp</item>
+        <item name="qs_autoRepeatEnabled">true</item>
+        <item name="qs_vibrateOnLimit">true</item>
     </style>
 </resources>

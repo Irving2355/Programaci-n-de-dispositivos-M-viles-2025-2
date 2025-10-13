@@ -13,6 +13,9 @@
         <attr name="qs_buttonIconPlus" format="reference"/>
         <attr name="qs_tint" format="color|reference"/>
 
+        <attr name="qs_cornerRadius" format="dimension"/>
+        <attr name="qs_buttonSize" format="dimension"/>
+
         <!-- comportamiento extra -->
         <attr name="qs_autoRepeatEnabled" format="boolean"/>
         <attr name="qs_vibrateOnLimit" format="boolean"/>
