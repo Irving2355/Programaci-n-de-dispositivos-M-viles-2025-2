@@ -7,11 +7,15 @@ import android.os.Looper
 import android.util.AttributeSet
 import android.view.HapticFeedbackConstants
 import android.view.LayoutInflater
+import android.view.animation.OvershootInterpolator
 import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import com.google.android.material.button.MaterialButton
 import com.icc.practica7.databinding.ViewQuantityStepperBinding
+import java.nio.DoubleBuffer
+import kotlin.math.max
+import kotlin.math.min
 
 class QuantityStepper @JvmOverloads constructor(
     context: Context,
@@ -160,26 +164,83 @@ class QuantityStepper @JvmOverloads constructor(
         setQuantityInternal(newVal,fromUser = true)
     }
 
-    private fun changedBy(delta: Int){
-        setQuantity(qty + delta, fromUser = true)
+    private fun setupAutoRepeat(btn: MaterialButton, delta: Int){
+        btn.setOnLongClickListener {
+            if(!autoRepeatEnebled) return@setOnLongClickListener false
+
+            repeating = true
+            //repita cada 120ms
+            handler.post (object : Runnable{
+                override fun run() {
+                    if(repeating){
+                        nudge(delta)
+                        handler.postDelayed(this,120)
+                    }
+                }
+            })
+            true
+        }
+
+        btn.setOnTouchListener { _, event ->
+            when(event.action){
+                android.view.MotionEvent.ACTION_UP,
+                    android.view.MotionEvent.ACTION_CANCEL -> repeating = false
+            }
+            false
+        }
     }
 
+    //APis publicas
     fun setOnQuantityChangedListener(l: OnQuantityChangedListener?){
-        listener = l
+        onQtyChanged = l
+    }
+
+    fun setOnTotalChangedListener(l: OnTotalChangedListener?){
+        onTotalChanged = l
     }
 
     fun getQuantity(): Int = qty
 
-    fun setQuantity(value: Int, fromUser: Boolean = false){
-        val clamped = value.coerceIn(min,max)
+    fun setQuantity(value: Int) = setQuantityInternal(value,fromUser = true)
+
+    fun getUnitPrice(): Double = unitPrice
+    fun setUnitPrice(value: Double){
+        unitPrice = max(0.0, value)
+        notifyTotal()
+    }
+
+    // clamp y notificaciones
+    fun setQuantityInternal(value: Int,fromUser: Boolean){
+        val clamped = min(max(value,min),max)
         val changed = (clamped != qty)
         qty = clamped
         binding.etQuantity.setText(qty.toString())
 
         if(fromUser && value != clamped){
-            Toast.makeText(context, "Limite $min , $max",
+            Toast.makeText(context,"Limite $min , $max",
                 Toast.LENGTH_SHORT).show()
         }
-        if(changed) listener?.onChanged(qty)
+        if(changed){
+            onQtyChanged?.onChanged(qty)
+            notifyTotal()
+        }
     }
+
+    fun notifyTotal(){
+        onTotalChanged?.onTotalChanged(unitPrice * qty)
+    }
+
+    //animacion sutil
+    private fun animateBump(){
+        val v = this
+        v.animate()
+            .scaleX(1.06f).scaleY(1.06f)
+            .setInterpolator (OvershootInterpolator())
+            .setDuration(90)
+            .withEndAction {
+                v.animate().scaleX(1f).scaleY(1f).setDuration(90).start()
+            }.start()
+    }
+
+    //pesistencia de estado
 }
