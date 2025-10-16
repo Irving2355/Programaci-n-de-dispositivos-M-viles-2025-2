@@ -4,6 +4,8 @@ import android.content.Context
 import android.graphics.PorterDuff
 import android.os.Handler
 import android.os.Looper
+import android.os.Parcel
+import android.os.Parcelable
 import android.util.AttributeSet
 import android.view.HapticFeedbackConstants
 import android.view.LayoutInflater
@@ -243,4 +245,47 @@ class QuantityStepper @JvmOverloads constructor(
     }
 
     //pesistencia de estado
+    override fun onSaveInstanceState(): Parcelable? {
+        val superState = super.onSaveInstanceState()
+        return SavedState(superState,qty,unitPrice)
+    }
+
+    override fun onRestoreInstanceState(state: Parcelable?) {
+        if(state is SavedState){
+            super.onRestoreInstanceState(state.superState)
+            qty = state.qty
+            unitPrice = state.price
+            binding.etQuantity.setText(qty.toString())
+            notifyTotal()
+        }else{
+            super.onRestoreInstanceState(state)
+        }
+    }
+
+    private class SavedState : BaseSavedState{
+        val qty : Int
+        val price: Double
+
+        constructor(superState: Parcelable?, q: Int, p: Double) :super(superState){
+            qty = q; price = p
+        }
+
+        private constructor(inParcel: Parcel): super(inParcel){
+            qty = inParcel.readInt()
+            price = inParcel.readDouble()
+        }
+
+        override fun writeToParcel(out: Parcel, flags: Int) {
+            super.writeToParcel(out, flags)
+            out.writeInt(qty)
+            out.writeDouble(price)
+        }
+
+        companion object{
+            @JvmField val CREATOR = object : Parcelable.Creator<SavedState>{
+                override fun createFromParcel(p: Parcel) = SavedState(p)
+                override fun newArray(size: Int): Array<SavedState?> = arrayOfNulls(size)
+            }
+        }
+    }
 }

@@ -17,12 +17,14 @@
 
     <com.icc.practica7.QuantityStepper
         android:id="@+id/qs"
+        style="?attr/quantityStepperStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:qs_min="1"
-        app:qs_max="20"
-        app:qs_step="2"
-        app:qs_initial="10"/>
+        app:qs_max="50"
+        app:qs_step="1"
+        app:qs_initial="2"
+        app:qs_unitPrice="39.9"/>
 
     <TextView
         android:id="@+id/tvTotal"
