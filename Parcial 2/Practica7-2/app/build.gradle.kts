@@ -60,7 +60,10 @@ dependencies {
     debugImplementation(libs.androidx.compose.ui.tooling)
     debugImplementation(libs.androidx.compose.ui.test.manifest)
 
-    implementation("com.google.android.recyclerview:recyclerview:1.3.2")
+    //implementation("com.google.android.recyclerview:recyclerview:1.3.2")
     implementation("androidx.recyclerview:recyclerview:1.3.2")
+
+    implementation("com.google.android.material:material:1.13.0")
+    implementation("androidx.appcompat:appcompat:1.7.1")
 
 }

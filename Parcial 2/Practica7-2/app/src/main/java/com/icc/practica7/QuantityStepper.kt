@@ -63,7 +63,7 @@ class QuantityStepper @JvmOverloads constructor(
         //leer atributios del xml/tema/estilos
         val a = context.obtainStyledAttributes(
             attrs, R.styleable.QuantityStepper,
-            deafStyle, 0
+            R.attr.quantityStepperStyle, 0
         )
         min = a.getInt(R.styleable.QuantityStepper_qs_min, 1)
         max = a.getInt(R.styleable.QuantityStepper_qs_max, 99)
@@ -141,7 +141,8 @@ class QuantityStepper @JvmOverloads constructor(
             width = buttonSizePx
             height = buttonSizePx
         }
-        btn.iconTint?.setColorFilter(tintColor, PorterDuff.Mode.SRC_IN)
+        //btn.iconTint?.setColorFilter(tintColor, PorterDuff.Mode.SRC_IN)
+        btn.icon?.setTint(tintColor)
         btn.backgroundTintList = ContextCompat.getColorStateList(
             context, R.color.teal_700)
         btn.cornerRadius = cornerRadius.toInt()

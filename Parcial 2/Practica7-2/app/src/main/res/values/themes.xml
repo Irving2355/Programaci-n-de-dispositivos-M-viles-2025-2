@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <style name="Widget" />
 
-    <style name="Theme.Practica7" parent="Theme.AppCompat.DayNight.NoActionBar">
+    <style name="Theme.Practica7" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="android:statusBarColor">?attr/colorPrimary</item>
         <item name="android:navigationBarColor">?attr/colorPrimary</item>
 
+        <!-- el siguiente es el hook-->
         <item name="quantityStepperStyle">@style/Widget.QuantityStepper</item>
     </style>
 
-    <style name="Widget.QuantityStepperStyle">
+    <style name="Widget.QuantityStepper">
         <item name="qs_buttonIconMinus">@drawable/ic_remove_24</item>
         <item name="qs_buttonIconPlus">@drawable/ic_add_24</item>
         <item name="qs_tint">@color/teal_700</item>
