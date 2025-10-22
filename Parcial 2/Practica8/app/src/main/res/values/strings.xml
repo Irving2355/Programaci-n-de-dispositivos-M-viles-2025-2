@@ -1,5 +1,8 @@
 <resources>
     <string name="app_name">Practica8</string>
     <string name="str_widget">Hola soy un widget</string>
-
+    <string name="cfg_title">Configurar widget</string>
+    <string name="cfg_hint">Escribe el mensaje a mostrar</string>
+    <string name="cfg_accept">Aceptar</string>
+    <string name="cfg_cancel">Cancelar</string>
 </resources>

@@ -23,6 +23,9 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:name=".WidgetConfig"
+            android:exported="true"/>
         <receiver
             android:name=".PrimerWidget"
             android:exported="true">
