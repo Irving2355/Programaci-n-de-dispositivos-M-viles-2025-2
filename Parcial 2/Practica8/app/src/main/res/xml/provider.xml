@@ -4,4 +4,5 @@
     android:minWidth="110dp"
     android:minHeight="40dp"
     android:label="@string/app_name"
-    android:updatePeriodMillis="0"/>
+    android:updatePeriodMillis="1800000"
+    android:configure="com.icc.practica8.WidgetConfig"/>
