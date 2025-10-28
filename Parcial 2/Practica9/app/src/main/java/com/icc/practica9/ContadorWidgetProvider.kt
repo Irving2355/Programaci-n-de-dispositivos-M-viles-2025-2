@@ -7,8 +7,6 @@ import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.widget.RemoteViews
-import androidx.activity.ComponentActivity
-import kotlinx.coroutines.MainScope
 
 class ContadorWidgetProvider : AppWidgetProvider() {
     override fun onUpdate(
@@ -64,5 +62,4 @@ class ContadorWidgetProvider : AppWidgetProvider() {
         const val PREFS = "WIDGET_REACTIVO_PREFS"
         const val KEY_CONTADOR = "contador_global"
     }
-
 }
