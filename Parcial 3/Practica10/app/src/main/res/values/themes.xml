@@ -2,7 +2,7 @@
 <resources>
 
     <style name="Theme.Practica10"
-        parent="Theme.MaterialComponentes.DayNight.NoActionBar">
+        parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="android:windowFullscreen">true</item>
     </style>
 </resources>
