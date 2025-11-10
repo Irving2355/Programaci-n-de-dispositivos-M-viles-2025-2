@@ -18,11 +18,11 @@
         android:orientation="horizontal"
         android:gravity="center_vertical"
         android:paddingTop="8dp">
-        <Button android:id="@+id/btnCBlack" android:background="#000"/>
-        <Button android:id="@+id/btnCRed" android:background="#F44336"/>
-        <Button android:id="@+id/btnCGreen" android:background="#4CAF50"/>
-        <Button android:id="@+id/btnCBlue" android:background="#2196F3"/>
-        <Button android:id="@+id/btnCYellow" android:background="#FFEB3B"/>
+        <Button style="@style/SwatchButton" android:id="@+id/btnCBlack" android:background="#000"/>
+        <Button style="@style/SwatchButton" android:id="@+id/btnCRed" android:background="#F44336"/>
+        <Button style="@style/SwatchButton" android:id="@+id/btnCGreen" android:background="#4CAF50"/>
+        <Button style="@style/SwatchButton" android:id="@+id/btnCBlue" android:background="#2196F3"/>
+        <Button style="@style/SwatchButton" android:id="@+id/btnCYellow" android:background="#FFEB3B"/>
     </LinearLayout>
 
     <!--Mezclador RGB-->
@@ -31,15 +31,15 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:paddingTop="8dp">
-        <TextView android:text="Mezclador RGB"/>
+        <TextView style="@style/LabelText" android:text="Mezclador RGB"/>
         <View
             android:id="@+id/vColorPreview"
             android:layout_width="match_parent"
             android:layout_height="28dp"
             android:background="#000"/>
-        <SeekBar android:id="@+id/seekR" android:max="255"/>
-        <SeekBar android:id="@+id/seekG" android:max="255"/>
-        <SeekBar android:id="@+id/seekB" android:max="255"/>
+        <SeekBar style="@style/CustomSeekBar" android:id="@+id/seekR" android:max="255" />
+        <SeekBar style="@style/CustomSeekBar" android:id="@+id/seekG" android:max="255"/>
+        <SeekBar style="@style/CustomSeekBar" android:id="@+id/seekB" android:max="255"/>
     </LinearLayout>
 
     <!--Grosor y acciones-->
@@ -48,17 +48,20 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center_vertical">
-        <TextView android:text="Grosor:"/>
+        <TextView style="@style/LabelText" android:text="Grosor:"/>
+
         <SeekBar
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:max="60"/>
-        <Button android:id="@+id/btnUndo" android:text="Deshacer"/>
-        <Button android:id="@+id/btnClear" android:text="Limpiar"/>
+            android:max="60" />
+
+        <Button style="@style/SwatchButton" android:id="@+id/btnUndo" android:text="Deshacer"/>
+        <Button style="@style/SwatchButton" android:id="@+id/btnClear" android:text="Limpiar"/>
     </LinearLayout>
     <!--Lienzo-->
-    <com.icc.PaintView <!--PaintView nombre de una clase kt-->
+    <!--PaintView nombre de una clase kt-->
+    <com.icc.practica11.PaintView
         android:id="@+id/paintView"
         android:layout_width="match_parent"
         android:layout_height="0dp"

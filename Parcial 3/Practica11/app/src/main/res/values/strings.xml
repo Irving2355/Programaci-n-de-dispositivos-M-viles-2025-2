@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">Practica11</string>
+
+    <string-array name="tools">
+        <item>Pluma libre</item>
+        <item>Punto</item>
+        <item>Linea</item>
+        <item>Rectangulo</item>
+        <item>Circulo</item>
+        <item>Ovalo</item>
+        <item>Arco</item>
+        <item>Texto</item>
+    </string-array>
 </resources>
