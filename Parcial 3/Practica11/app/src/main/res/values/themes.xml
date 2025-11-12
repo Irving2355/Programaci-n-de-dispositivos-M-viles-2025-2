@@ -2,7 +2,7 @@
 <resources>
 
     <style name="Theme.Practica11"
-        parent="android:Theme.Material.Light.NoActionBar" />
+        parent="Theme.Material3.DayNight.NoActionBar" />
 
     <style name="SwatchButton" parent="Widget.AppCompat.Button.Borderless">
         <item name="android:layout_width">0dp</item>

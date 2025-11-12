@@ -97,7 +97,10 @@ class PaintView @JvmOverloads constructor(
         return true
     }
 
-    fun undo() {if(strokes.isNotEmpty()){strokes.removeLast();invalidate()}}
+    fun undo() {if(strokes.isNotEmpty()){
+        //strokes.removeLast() requiere API 35
+        strokes.removeAt(strokes.lastIndex)
+        invalidate()}}
 
     fun clearAll(){strokes.clear();invalidate()}
 }
